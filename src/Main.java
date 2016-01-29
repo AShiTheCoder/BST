@@ -1,22 +1,15 @@
 
 public class Main {
-	static int timesPer = 100;
-	static int total = 10000;
+	static int timesPer = 10;
+	static int total = 1000;
 	static double aver = 0;
 	static double[] averages = new double[total];
-	static Randp[] gens;
 	
 	public static void main(String[] args) {
-		for (int i = 0; i < total; i++){
-			averages[i] = test(i + 1);
-		}
-		for (int i = 0; i < total; i++){
-			System.out.println("Average depth for " + (i + 1) + " number tree: " + averages[i]);
-		}
+		test(10000);
 	}
 	
-	public static double test(int a){
-		gens = new Randp[a];
+	public static void test(int a){
 		aver = 0;
 		for (int i = 0; i < timesPer; i++){
 			Randp r = new Randp(a);
@@ -27,7 +20,12 @@ public class Main {
 			aver += t.depth();
 		}
 		aver /= timesPer;
-		return aver;
+		System.out.println("Average depth for " + a + " number tree: " + aver);
 	}
-
+	
+	public static void multTester(){
+		for (int i = 0; i < total; i++){
+			test(i + 1);
+		}
+	}
 }

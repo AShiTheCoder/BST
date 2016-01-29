@@ -1,24 +1,29 @@
-import java.util.ArrayList;
-
 public class Randp {
-	int x;
-	int y;
-	ArrayList<Integer> nums = new ArrayList<Integer>();
+	private int numsLeft;
+	int[] samples;
 	
 	public Randp(int c){
+		numsLeft = c;
+		samples = new int[c];
 		for (int i = 0; i < c; i++){
-			nums.add(i + 1);
+			samples[i] = i + 1;
 		}
 	}
 	
 	public int nextInt(){
-		if (nums.size() == 0){
-			return 0;
-		} else {
-			x = (int)(Math.random() * nums.size());
-			y = nums.get(x);
-			nums.remove(x);
+		if (numsLeft > 0){
+			int x = (int) (Math.random() * numsLeft);
+			int y = samples[x];
+			if (x == numsLeft - 1){
+				numsLeft--;
+				return y;
+			} else {
+				samples[x] = samples[numsLeft - 1];
+			}
+			numsLeft--;
 			return y;
+		} else {
+			return 0;
 		}
 	}
 }
